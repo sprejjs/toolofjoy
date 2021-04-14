@@ -33,7 +33,7 @@ jobs:
     docker:
       - image: cibuilds/aws:2.1.36
     steps:
-      - attach_workspace
+      - restor_workspace
       - run:
           command: |
             aws s3 sync build/ "s3://toolofjoy.online" --region ap-southeast-2
