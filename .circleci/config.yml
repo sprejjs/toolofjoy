@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@2.0.0
+
+jobs:
+  deploy:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - run:
+          command: yarn build
+      - run:
+          command: |
+            aws s3 sync build/ "s3://toolofjoy.online" --region ap-southeast-2
+
+workflows:
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: main
