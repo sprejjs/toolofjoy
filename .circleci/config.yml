@@ -11,7 +11,7 @@ commands:
           paths:
             - project
 
-  restor_workspace:
+  restore_workspace:
     steps:
       - attach_workspace:
           at: ~/
@@ -33,7 +33,7 @@ jobs:
     docker:
       - image: cibuilds/aws:2.1.36
     steps:
-      - restor_workspace
+      - restore_workspace
       - run:
           command: |
             aws s3 sync build/ "s3://toolofjoy.online" --region ap-southeast-2
