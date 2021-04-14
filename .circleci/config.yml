@@ -3,6 +3,19 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@2.0.0
 
+commands:
+  persist_workspace:
+    steps:
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+
+  restor_workspace:
+    steps:
+      - attach_workspace:
+          at: ~/
+
 jobs:
   build:
     docker:
@@ -14,11 +27,13 @@ jobs:
           command: yarn install
       - run:
           command: yarn build
+      - persist_to_workspace
 
   deploy:
     docker:
       - image: cibuilds/aws:2.1.36
     steps:
+      - attach_workspace
       - run:
           command: |
             aws s3 sync build/ "s3://toolofjoy.online" --region ap-southeast-2
