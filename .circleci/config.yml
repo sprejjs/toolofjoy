@@ -1,11 +1,12 @@
 version: 2.1
 
 orbs:
+  node: circleci/node@4.0.0
   aws-cli: circleci/aws-cli@2.0.0
 
 jobs:
-  deploy:
-    executor: aws-cli/default
+  build:
+    executor: node/default
     steps:
       - checkout
       - run:
@@ -14,10 +15,20 @@ jobs:
           command: |
             aws s3 sync build/ "s3://toolofjoy.online" --region ap-southeast-2
 
+  deploy:
+    executor: aws-cli/default
+    steps:
+      - run:
+          command: |
+            aws s3 sync build/ "s3://toolofjoy.online" --region ap-southeast-2
+
 workflows:
   deploy:
     jobs:
-      - deploy:
+      - build:
           filters:
             branches:
               only: main
+      - deploy:
+          requires:
+            - build
