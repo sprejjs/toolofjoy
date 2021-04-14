@@ -9,12 +9,12 @@ commands:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project
+            - ./
 
   restore_workspace:
     steps:
       - attach_workspace:
-          at: ~/
+          at: ./
 
 jobs:
   build:
