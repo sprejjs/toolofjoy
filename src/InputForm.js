@@ -4,7 +4,6 @@ import {
     CardContent,
     Grid,
     Icon,
-    makeStyles,
     Paper,
     TextField,
     Typography,
@@ -66,21 +65,21 @@ class InputForm extends React.Component {
         let isYellow = false;
         const lowercased = newValue.toLowerCase();
 
-        for (var i = 0; i < lowercased.length; i++) {
-            var char = lowercased.charAt(i);
+        for (let i = 0; i < lowercased.length; i++) {
+            let char = lowercased.charAt(i);
             if (char in emojiMap) {
                 result += emojiMap[char]
-            } else if (!char.match(/[a-z\*\!\#\?\@\ ]/)) {
+            } else if (!char.match(/[a-z*!#?@ ]/)) {
                 result += char
-            } else if (char == "*") {
+            } else if (char === "*") {
                 isYellow = !isYellow;
-            } else if (char == " ") {
+            } else if (char === " ") {
                 result += "   ";
             } else {
                 if (char in characterReplaceMap) {
                     char = characterReplaceMap[char]
                 }
-                var prefix = isYellow ? ":alphabet-yellow-" : ":alphabet-white-"
+                const prefix = isYellow ? ":alphabet-yellow-" : ":alphabet-white-";
                 result += prefix + char + ":"
             }
         }
