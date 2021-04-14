@@ -14,9 +14,6 @@ jobs:
           command: yarn install
       - run:
           command: yarn build
-      - run:
-          command: |
-            aws s3 sync build/ "s3://toolofjoy.online" --region ap-southeast-2
 
   deploy:
     executor: aws-cli/default
