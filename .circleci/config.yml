@@ -27,7 +27,7 @@ jobs:
           command: yarn install
       - run:
           command: yarn build
-      - persist_to_workspace
+      - persist_workspace
 
   deploy:
     docker:
