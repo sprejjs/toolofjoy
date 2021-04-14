@@ -16,7 +16,8 @@ jobs:
           command: yarn build
 
   deploy:
-    executor: aws-cli/default
+    docker:
+      - image: cibuilds/aws:2.1.36
     steps:
       - run:
           command: |
