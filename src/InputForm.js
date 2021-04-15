@@ -13,11 +13,10 @@ import React from "react";
 
 const useStyles = () => ({
     root: {
-        minWidth: 400,
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: 32,
-        maxWidth: 1.2
+        maxWidth: 400
     },
     output: {
         minHeight: 200,
