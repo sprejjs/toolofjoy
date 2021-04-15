@@ -29,12 +29,16 @@ class InputForm extends React.Component {
     constructor(props) {
         super(props);
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const input = urlParams.get('input');
+
         this.state = {
-            value: null
+            input: input,
+            output: this.processInput(input)
         }
     }
 
-    onInputChanged(newValue) {
+    processInput(input) {
         // this replaces a given character with its
         // :alphabet-white- equivalent
         const characterReplaceMap = {
@@ -62,7 +66,7 @@ class InputForm extends React.Component {
 
         let result = "";
         let isYellow = false;
-        const lowercased = newValue.toLowerCase();
+        const lowercased = input.toLowerCase();
 
         for (let i = 0; i < lowercased.length; i++) {
             let char = lowercased.charAt(i);
@@ -83,8 +87,13 @@ class InputForm extends React.Component {
             }
         }
 
+        return result
+    }
+
+    onInputChanged(newValue) {
         this.setState({
-            value: result
+            input: newValue,
+            output: this.processInput(newValue)
         })
     }
 
@@ -111,6 +120,7 @@ class InputForm extends React.Component {
                                 multiline
                                 rows={4}
                                 variant="outlined"
+                                value={this.state.input}
                                 onChange={(event) => this.onInputChanged(event.target.value)}
                             />
                         </Grid>
@@ -125,7 +135,7 @@ class InputForm extends React.Component {
                                 elevation={0}
                                 variant="outlined"
                                 rounded>
-                                {this.state.value}
+                                {this.state.output}
                             </Paper>
                         </Grid>
 
