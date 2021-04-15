@@ -37,6 +37,13 @@ jobs:
           command: |
             aws s3 sync project/build/ "s3://toolofjoy.online" --region ap-southeast-2
 
+  invalidate-cache:
+    docker:
+      - image: cibuilds/aws:2.1.36
+    steps:
+      - run:
+          command aws cloudfront create-invalidation --distribution-id E1YI6VNNU2WK8X --paths "/*"
+
 workflows:
   deploy:
     jobs:
@@ -47,3 +54,6 @@ workflows:
       - deploy:
           requires:
             - build
+      - invalidate-cache:
+          requires:
+            - deploy
