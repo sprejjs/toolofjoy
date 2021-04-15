@@ -34,7 +34,7 @@ class InputForm extends React.Component {
 
         this.state = {
             input: input,
-            output: this.processInput(input)
+            output: this.processInput(input ?? '')
         }
     }
 
@@ -98,7 +98,7 @@ class InputForm extends React.Component {
     }
 
     copyToClipboard() {
-        navigator.clipboard.writeText(this.state.value)
+        navigator.clipboard.writeText(this.state.output)
     }
 
     render() {
