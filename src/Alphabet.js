@@ -24,7 +24,7 @@ const useStyles = () => ({
     }
 });
 
-class InputForm extends React.Component {
+class Alphabet extends React.Component {
 
     constructor(props) {
         super(props);
@@ -108,6 +108,11 @@ class InputForm extends React.Component {
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
+                            <Typography component="h4" variant="h4" align="left" color="textPrimary" gutterBottom>
+                                Alphabet of Joy
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
                             <Typography component="p" variant="p" align="left" color="textPrimary" gutterBottom>
                                 Enter any text below, use *asterisks* for yellow:
                             </Typography>
@@ -157,4 +162,4 @@ class InputForm extends React.Component {
     }
 }
 
-export default withStyles(useStyles)(InputForm)
+export default withStyles(useStyles)(Alphabet)
