@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Button, CssBaseline, Toolbar, Typography, makeStyles } from "@material-ui/core";
+import { AppBar, Button, CssBaseline, Toolbar } from "@material-ui/core";
 import Alphabet from './Alphabet';
 import Encoder from './Encoder';
 import Decoder from './Decoder';
